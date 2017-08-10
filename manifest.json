@@ -1,0 +1,56 @@
+{
+  "content_scripts": [
+    {
+      "matches": [
+        "http://chrome.google.com/webstore/*",
+        "https://chrome.google.com/webstore/*"
+      ],
+      "run_at": "document_start",
+      "css": ["content/store.css"],
+      "js": [
+        "content/callback_registry.js",
+        "content/channel.js",
+        "content/proxy.js",
+        "content/store_proxy.js"
+      ]
+    }
+  ],
+  "name": "__MSG_name__",
+  "default_locale": "en",
+  "icons": {
+    "128": "icons/128.png",
+    "64": "icons/64.png"
+  },
+  "description": "__MSG_description__",
+  "background": {
+    //"persistent": false,
+    "scripts": [
+      "/i18n.js",
+      "/api/api.js",
+      "/api/installer.js",
+      "/api/event.js",
+      "/api/management.js",
+      "/api/webstore.js",
+      "/api/webstore_private.js",
+      "/background/content_proxy.js",
+      //"single_notification.js",
+      "/background/app.js"
+    ]
+  },
+  "version": "2.3.0",
+  "manifest_version": 2,
+  "page_action": {
+    "default_icon": "icons/19.png",
+    "default_title": "__MSG_buttonTitle__"
+  },
+  "permissions": [
+    "tabs",
+    "management",
+    "downloads",
+    //"notifications",
+    //"webRequest",
+    //"webRequestBlocking",
+    "https://clients2.google.com/service/update2/*",
+    "*://chrome.google.com/webstore/*"
+  ]
+}

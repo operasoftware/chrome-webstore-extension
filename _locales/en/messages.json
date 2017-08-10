@@ -1,0 +1,56 @@
+{
+  "name": {
+    "message": "Download Chrome Extension",
+    "description": ""
+  },
+  
+  "description": {
+    "message": "Install extensions from Chrome Web Store.",
+    "description": ""
+  },
+
+  "buttonTitle": {
+    "message": "Add to Opera",
+    "description": ""
+  },
+
+  "installerErrorNetwork": {
+    "message": "Unable to download extension package due the network error.\n\nCheck your internet connection and try again.",
+    "description": ""
+  },
+
+  "installerErrorTimeout": {
+    "message": "Downloading timeout reached. It is most often caused by slow or unstable internet connection.\n\nWait a while or try one more time.",
+    "description": ""
+  },
+
+  "installerFinalize": {
+    "message": "To complete installation, go to extensions manager and confirm installation by clicking install button.",
+    "description": ""
+  },
+
+  "installerFinalizeMayWork": {
+    "message": "To complete installation, go to extensions manager and confirm installation by clicking install button.\n\n[Compatibility notice]\nPlease, be aware that this extension requires APIs that aren't fully supported in Opera.\nIt still can work in Opera, so complete installation to verify.",
+    "description": ""
+  },
+
+  "installerFinalizeNotSupported": {
+    "message": "To complete installation, go to extensions manager and confirm installation by clicking install button.\n\n[Compatibility notice]\nPlease, be aware that this extension requires APIs that are not supported in Opera.\nIt still can work in Opera, so complete installation to verify.",
+    "description": ""
+  },
+
+  "installerNotSupportedApp": {
+    "message": "You are trying to install an APP.\n\nOpera doesn't support apps. Only EXTENSIONS can be installed.",
+    "description": ""
+  },
+
+  "installerNotSupportedTheme": {
+    "message": "You are trying to install a THEME.\n\nOpera doesn't support chromium theme format. Only EXTENSIONS can be installed.",
+    "description": ""
+  },
+
+  "welcomeYandex": {
+    "message": "Thank you for installing this extension but Yandex browser users don't need it. Your browser supports chrome web stroe by default. Just go there and try yourself.",
+    "description": ""
+  }
+}

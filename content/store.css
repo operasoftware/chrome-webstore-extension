@@ -1,0 +1,10 @@
+div[role="button"],
+div[role="button"]:hover {
+  border-color: #a61414 !important;
+  background-color: #d12426 !important;
+  background-image: -webkit-linear-gradient(top,#f22222 0%,#bf0f0f 100%) !important;
+}
+
+div[role="button"]:hover {
+  background-image: -webkit-linear-gradient(top,#ff3333 0%,#d63131 100%) !important;
+}

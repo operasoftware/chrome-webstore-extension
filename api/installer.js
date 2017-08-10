@@ -70,12 +70,12 @@ class Installer extends Api {
 
   isTypeSupported_(manifest) {
     if (Api.isTheme(manifest)) {
-      alert(I18n.get('installerNotSupportedTheme'));
+      alert(chrome.i18n.getMessage('installerNotSupportedTheme'));
       return false;
     }
 
     if (Api.isApp(manifest)) {
-      alert(I18n.get('installerNotSupportedApp'));
+      alert(chrome.i18n.getMessage('installerNotSupportedApp'));
       return false;
     }
 
@@ -111,7 +111,6 @@ class Installer extends Api {
     return {
       'filename': `${id}.nex`,
       'url': `${this.constructor.CRX_HOST}?${params}`,
-      // 'saveAs': true,
     };
   }
 
@@ -136,13 +135,13 @@ class Installer extends Api {
     this.onInstallStageChanged.dispatch(
         {id, stage: this.InstallStage.INSTALLING});
     if (manifestState === Api.FEATURE_NOT_SUPPORTED) {
-      alert(I18n.get('installerFinalizeNotSupported'));
+      alert(chrome.i18n.getMessage('installerFinalizeNotSupported'));
     } else if (
         manifestState === Api.FEATURE_MAY_WORK ||
         manifestState === Api.FEATURE_MAY_WORK_WITHOUT) {
-      alert(I18n.get('installerFinalizeMayWork'));
+      alert(chrome.i18n.getMessage('installerFinalizeMayWork'));
     } else {
-      alert(I18n.get('installerFinalize'));
+      alert(chrome.i18n.getMessage('installerFinalize'));
     }
 
     this.navigateToExtensionDetails(id);
@@ -170,11 +169,11 @@ class Installer extends Api {
                 onUnpacked();
               } else if (download) {
                 clearInterval(interv);
-                alert(I18n.get('installerErrorNetwork'));
+                alert(chrome.i18n.getMessage('installerErrorNetwork'));
                 onError();
               } else if (Date.now() > maxTime) {
                 clearInterval(interv);
-                alert(I18n.get('installerErrorTimeout'));
+                alert(chrome.i18n.getMessage('installerErrorTimeout'));
                 onError();
               }
             });

@@ -25,7 +25,6 @@
   "background": {
     //"persistent": false,
     "scripts": [
-      "/i18n.js",
       "/api/api.js",
       "/api/installer.js",
       "/api/event.js",
@@ -33,7 +32,6 @@
       "/api/webstore.js",
       "/api/webstore_private.js",
       "/background/content_proxy.js",
-      //"single_notification.js",
       "/background/app.js"
     ]
   },
@@ -47,9 +45,6 @@
     "tabs",
     "management",
     "downloads",
-    //"notifications",
-    //"webRequest",
-    //"webRequestBlocking",
     "https://clients2.google.com/service/update2/*",
     "*://chrome.google.com/webstore/*"
   ]

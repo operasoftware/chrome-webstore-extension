@@ -54,7 +54,6 @@ class Page {
 
   addApis_() {
     Reflect.defineProperty(chrome, 'app', {value: App.get()});
-    // Reflect.defineProperty(chrome, 'Event', {value: () => Event.get()});
   }
 
   hideOpera_() {

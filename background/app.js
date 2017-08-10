@@ -18,42 +18,16 @@ class App {
       'webstorePrivate': WebstorePrivate.get(),
     });
 
-    this.hideUserAgent_();
     this.reloadWebstoreTabs_();
     this.setupInstallButton_();
   }
 
-  hideUserAgent_() {
-    if (!chrome.webRequest) {
-      return;
-    }
-    chrome.webRequest.onBeforeSendHeaders.addListener(
-        this.onBeforeSendHeaders_, {
-          'urls': [
-            this.constructor.CRX_HOST_PATTERN,
-            this.constructor.WEBSTORE_HOST_PATTERN,
-          ],
-        },
-        ['blocking', 'requestHeaders']);
-  }
-
   isSupportedBrowser_() {
     if (navigator.userAgent.includes('YaBrowser')) {
-      alert(I18n.get('welcomeYandex'));
+      alert(chrome.i18n.getMessage('welcomeYandex'));
       return false;
     }
     return true;
-  }
-
-  onBeforeSendHeaders_(details) {
-    for (const header of details.requestHeaders) {
-      if (header.name === 'User-Agent') {
-        header.value = header.value.split('OPR')[0].trim();
-        break;
-      }
-    }
-
-    return {requestHeaders: details.requestHeaders};
   }
 
   onTabChange_(tab) {

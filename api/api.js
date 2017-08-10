@@ -8,11 +8,11 @@ class Api {
       'background': this.FEATURE_SUPPORTED,
       'background_page': this.FEATURE_NOT_SUPPORTED,
       'browser_action': this.FEATURE_SUPPORTED,
-      'chrome_settings_overrides': this.FEATURE_NOT_SUPPORTED,  // no effect
-      'chrome_ui_overrides': this.FEATURE_MAY_WORK_WITHOUT,     // no effect
+      'chrome_settings_overrides': this.FEATURE_NOT_SUPPORTED, // no effect
+      'chrome_ui_overrides': this.FEATURE_MAY_WORK_WITHOUT, // no effect
       'chrome_url_overrides': this.FEATURE_NOT_SUPPORTED,
       'commands': this.FEATURE_SUPPORTED,
-      'content_capabilities': this.FEATURE_NOT_SUPPORTED,  // need more tests
+      'content_capabilities': this.FEATURE_NOT_SUPPORTED, // need more tests
       'content_scripts': this.FEATURE_SUPPORTED,
       'content_security_policy': this.FEATURE_SUPPORTED,
       'converted_from_user_script': this.FEATURE_SUPPORTED,
@@ -21,22 +21,22 @@ class Api {
       'description': this.FEATURE_SUPPORTED,
       'devtools_page': this.FEATURE_SUPPORTED,
       'event_rules': this.FEATURE_SUPPORTED,
-      'export': this.FEATURE_MAY_WORK,  // need more tests
+      'export': this.FEATURE_MAY_WORK, // need more tests
       'externally_connectable': this.FEATURE_SUPPORTED,
       'file_browser_handlers': this.FEATURE_MAY_WORK_WITHOUT,
       'file_system_provider_capabilities': this.FEATURE_NOT_SUPPORTED,
       'homepage_url': this.FEATURE_SUPPORTED,
       'icons': this.FEATURE_SUPPORTED,
-      'import': this.FEATURE_MAY_WORK,  // need more tests
+      'import': this.FEATURE_MAY_WORK, // need more tests
       'incognito': this.FEATURE_SUPPORTED,
       'input_components': this.FEATURE_NOT_SUPPORTED,
       'key': this.FEATURE_SUPPORTED,
       'manifest_version': this.FEATURE_SUPPORTED,
-      'minimum_chrome_version': this.FEATURE_SUPPORTED,  // no effect
-      'nacl_modules': this.FEATURE_NOT_SUPPORTED,        // no effect
+      'minimum_chrome_version': this.FEATURE_SUPPORTED, // no effect
+      'nacl_modules': this.FEATURE_NOT_SUPPORTED, // no effect
       'name': this.FEATURE_SUPPORTED,
       'oauth2': this.FEATURE_MAY_WORK,
-      'offline_enabled': this.FEATURE_MAY_WORK_WITHOUT,  // no effect
+      'offline_enabled': this.FEATURE_MAY_WORK_WITHOUT, // no effect
       'omnibox': this.FEATURE_SUPPORTED,
       'optional_permissions': this.FEATURE_SUPPORTED,
       'options_page': this.FEATURE_SUPPORTED,
@@ -45,7 +45,7 @@ class Api {
       'permissions': {
         'activeTab': this.FEATURE_SUPPORTED,
         'alarms': this.FEATURE_SUPPORTED,
-        'background': this.FEATURE_MAY_WORK_WITHOUT,  // can work without
+        'background': this.FEATURE_MAY_WORK_WITHOUT, // can work without
         'bookmarks': this.FEATURE_SUPPORTED,
         'browsingData': this.FEATURE_SUPPORTED,
         'certificateProvider': this.FEATURE_NOT_SUPPORTED,
@@ -71,7 +71,7 @@ class Api {
         'gcm': this.FEATURE_SUPPORTED,
         'geolocation': this.FEATURE_SUPPORTED,
         'history': this.FEATURE_SUPPORTED,
-        'identity': this.FEATURE_NOT_SUPPORTED,  // 90% not supported
+        'identity': this.FEATURE_NOT_SUPPORTED, // 90% not supported
         'idle': this.FEATURE_SUPPORTED,
         'idltest': this.FEATURE_NOT_SUPPORTED,
         'management': this.FEATURE_SUPPORTED,
@@ -84,16 +84,15 @@ class Api {
         'power': this.FEATURE_SUPPORTED,
         'printerProvider': this.FEATURE_SUPPORTED,
         'privacy': this.FEATURE_SUPPORTED,
-        'processes': this.FEATURE_NOT_SUPPORTED,  // dev only
+        'processes': this.FEATURE_NOT_SUPPORTED, // dev only
         'proxy': this.FEATURE_SUPPORTED,
         'sessions': this.FEATURE_SUPPORTED,
-        'signedInDevices': this.FEATURE_NOT_SUPPORTED,  // dev only
-        'storage': this.FEATURE_MAY_WORK,               // sync ?
+        'signedInDevices': this.FEATURE_NOT_SUPPORTED, // dev only
+        'storage': this.FEATURE_MAY_WORK, // sync ?
         'system.cpu': this.FEATURE_SUPPORTED,
         'system.display': this.FEATURE_SUPPORTED,
         'system.memory': this.FEATURE_SUPPORTED,
         'system.storage': this.FEATURE_SUPPORTED,
-        // dev only by mistake will be fixed soon
         'tabCapture': this.FEATURE_SUPPORTED,
         'tabs': this.FEATURE_SUPPORTED,
         'topSites': this.FEATURE_SUPPORTED,
@@ -105,10 +104,10 @@ class Api {
         'webNavigation': this.FEATURE_SUPPORTED,
         'webRequest': this.FEATURE_SUPPORTED,
         'webRequestBlocking': this.FEATURE_SUPPORTED,
-        'webview': this.FEATURE_MAY_WORK,  // yet
+        'webview': this.FEATURE_MAY_WORK, // yet
         'windows': this.FEATURE_SUPPORTED,
       },
-      'platforms': this.FEATURE_NOT_SUPPORTED,  // for NaCL
+      'platforms': this.FEATURE_NOT_SUPPORTED, // for NaCL
       'plugins': this.FEATURE_SUPPORTED,
       'requirements': this.FEATURE_SUPPORTED,
       'sandbox': this.FEATURE_SUPPORTED,
@@ -116,13 +115,13 @@ class Api {
       'signature': this.FEATURE_NOT_SUPPORTED,
       'spellcheck': this.FEATURE_SUPPORTED,
       'storage': this.FEATURE_SUPPORTED,
-      'system_indicator': this.FEATURE_MAY_WORK_WITHOUT,  // no effect
+      'system_indicator': this.FEATURE_MAY_WORK_WITHOUT, // no effect
       'tts_engine': this.FEATURE_SUPPORTED,
       'update_url': this.FEATURE_SUPPORTED,
       'version': this.FEATURE_SUPPORTED,
       'version_name': this.FEATURE_SUPPORTED,
       'web_accessible_resources': this.FEATURE_SUPPORTED,
-      'webview': this.FEATURE_MAY_WORK,  // yet
+      'webview': this.FEATURE_MAY_WORK, // yet
     };
   }
 

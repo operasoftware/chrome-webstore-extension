@@ -6,6 +6,8 @@ class Event extends Api {
     super();
     this.event_ = event;
     /*
+    TODO: Add support for rules.
+
     this.ruleID_ = 0;
     this.rules_ = new Map();
     */

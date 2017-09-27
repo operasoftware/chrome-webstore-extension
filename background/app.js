@@ -1,94 +1,54 @@
 'use strict';
 
-class App {
-  static get ACTION_ADD_TO_OPERA() { return 'add-to-opera'; }
-  static get CRX_HOST_PATTERN() { return '*://clients2.google.com/*'; }
-  static get WEBSTORE_HOST_PATTERN() { return '*://*.chrome.google.com/*'; }
+{
+  const WEBSTORE_HOST_PATTERN = '*://*.chrome.google.com/*';
+  const YANDEX_UA_CODE = 'YaBrowser';
+  const YANDEX_ERROR_MESSAGE = 'welcomeYandex';
 
-  constructor() {
-    if (!this.isSupportedBrowser_()) {
-      chrome.management.uninstallSelf();
-      return;
-    }
-    chrome.installer = Installer.get();
-
-    this.proxy_ = new ContentProxy({
-      'management': Management.get(),
-      'webstore': Webstore.get(),
-      'webstorePrivate': WebstorePrivate.get(),
-    });
-
-    this.reloadWebstoreTabs_();
-    this.setupInstallButton_();
-  }
-
-  isSupportedBrowser_() {
-    if (navigator.userAgent.includes('YaBrowser')) {
-      alert(chrome.i18n.getMessage('welcomeYandex'));
-      return false;
-    }
-    return true;
-  }
-
-  onTabChange_(tab) {
-    if (!tab.url || !tab.url.includes('chrome.google.com/webstore')) {
-      return;
-    }
-
-    if (tab.url &&
-        tab.url.includes('chrome.google.com/webstore/detail/')) {
-      chrome.pageAction.show(tab.id);
-    } else {
-      chrome.pageAction.hide(tab.id);
-    }
-  }
-
-  reloadWebstoreTabs_() {
-    chrome.tabs.query({'url': this.constructor.WEBSTORE_HOST_PATTERN}, tabs => {
-      tabs.forEach(tab => chrome.tabs.reload(tab.id));
-    });
-  }
-
-  setupInstallButton_() {
-    chrome.pageAction.onClicked.addListener(tab => {
-      const id = chrome.installer.getIdFromUrl(tab.url);
-      if (!id) {
+  class EventPageExtension {
+    constructor() {
+      if (!this.isSupportedBrowser_()) {
+        chrome.management.uninstallSelf();
         return;
       }
 
-      chrome.installer.isInstalled(id).then(isInstalled => {
-        chrome.pageAction.hide(tab.id);
-        if (isInstalled) {
-          chrome.installer.navigateToExtensionDetails(id);
-          return;
+      this.registerListeners_();
+    }
+
+    isSupportedBrowser_() {
+      if (navigator.userAgent.includes(YANDEX_UA_CODE)) {
+        alert(chrome.i18n.getMessage(YANDEX_ERROR_MESSAGE));
+        return false;
+      }
+      return true;
+    }
+
+    registerListeners_() {
+      chrome.runtime.onConnect.addListener(port => this.createProxy_(port));
+      chrome.runtime.onInstalled.addListener(({reason}) => {
+        const {INSTALL, UPDATE} = chrome.runtime.OnInstalledReason;
+        if (reason === INSTALL || reason === UPDATE) {
+          this.reloadWebstoreTabs_();
         }
-
-        let onInstallRequest;
-        new Promise((resolve, reject) => {
-          onInstallRequest = extensionId => {
-            if (id === extensionId) {
-              resolve();
-            }
-          };
-          chrome.installer.onInstallRequest.addListener(onInstallRequest);
-          chrome.tabs.sendMessage(tab.id, this.constructor.ACTION_ADD_TO_OPERA);
-          setTimeout(reject, 3000);
-        }).then(() => {
-          chrome.installer.onInstallRequest.removeListener(onInstallRequest);
-        }).catch(() => {
-          chrome.installer.onInstallRequest.removeListener(onInstallRequest);
-          chrome.installer.install({id});
-        });
       });
-    });
+    }
 
-    chrome.tabs.onActivated.addListener(info => {
-      chrome.tabs.get(info.tabId, tab => this.onTabChange_(tab));
-    });
-    chrome.tabs.onUpdated.addListener(
-        (id, changes, tab) => this.onTabChange_(tab));
-    chrome.tabs.onCreated.addListener(tab => this.onTabChange_(tab));
+    createProxy_(port) {
+      const installer = Installer.get();
+      const management = Management.get();
+      const webstorePrivate = WebstorePrivate.get(installer);
+
+      new ContentProxy(port, installer, {management, webstorePrivate});
+    }
+
+    reloadWebstoreTabs_() {
+      chrome.tabs.query({url: WEBSTORE_HOST_PATTERN}, tabs => {
+        for (let {id} of tabs) {
+          chrome.tabs.reload(id);
+        }
+      });
+    }
   }
-}
 
-let app = new App();
+  new EventPageExtension();
+}

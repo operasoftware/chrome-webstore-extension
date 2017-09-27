@@ -1,55 +1,104 @@
 'use strict';
 
 class ContentProxy {
-  constructor(chromeWhitelist, operaWhitelist) {
+  static get ACTION_ADD_TO_OPERA() { return 'add-to-opera'; }
+
+  constructor(port, installer, chromeWhitelist, operaWhitelist) {
+    this.port_ = port;
+    const tab = this.port_.sender.tab;
+    this.tabId_ = tab.id;
+    this.installer_ = installer;
     this.opr_ = operaWhitelist || {};
     this.chrome_ = chromeWhitelist || {};
 
-    this.listeners_ = new Map();
-
-    chrome.runtime.onConnect.addListener(port => this.onConnect_(port));
+    this.registeredListeners_ = [];
+    this.registerPortListeners_();
+    this.onTabUpdate_(tab);
   }
 
   get opr() { return this.opr_; }
   get chrome() { return this.chrome_; }
 
-  addListener_(port, message) {
-    let id = message.id;
-    let add = this.getMethod_(message.add);
+  registerPortListeners_() {
+    const onDisconnect = () => {
+      for (let listener of this.registeredListeners_) {
+        listener();
+      }
+    };
+    this.port_.onDisconnect.addListener(onDisconnect);
+    this.callOnDisconnect_(
+        () => this.port_.onDisconnect.removeListener(onDisconnect));
+
+    const onMessage = message => this.onMessage_(message);
+    this.port_.onMessage.addListener(onMessage);
+    this.callOnDisconnect_(
+        () => this.port_.onMessage.removeListener(onMessage));
+
+    const onActivated = info => {
+      chrome.tabs.get(info.tabId, tab => this.onTabUpdate_(tab));
+    };
+    chrome.tabs.onActivated.addListener(onActivated);
+    this.callOnDisconnect_(
+      () => chrome.tabs.onActivated.removeListener(onActivated));
+
+    const onUpdated = (id, changes, tab) => this.onTabUpdate_(tab);
+    chrome.tabs.onUpdated.addListener(onUpdated);
+    this.callOnDisconnect_(
+        () => chrome.tabs.onUpdated.removeListener(onUpdated));
+
+    const onClicked = tab => {
+      if (!tab || tab.id !== this.tabId_ || !tab.url) {
+        return;
+      }
+      this.onButtonClicked_(tab.url);
+    };
+    chrome.pageAction.onClicked.addListener(onClicked);
+    this.callOnDisconnect_(
+        () => chrome.pageAction.onClicked.removeListener(onClicked));
+  }
+
+  callOnDisconnect_(method) { this.registeredListeners_.push(method); }
+
+  addListener_(message) {
+    const id = message.id;
+    const add = this.getMethod_(message.add);
     if (!add) {
       return;
     }
 
-    let listener = (...data) => port.postMessage({data, id});
+    const listener = (...data) => this.port_.postMessage({data, id});
     add(listener);
 
     if (!message.remove) {
       return;
     }
-    let remove = this.getMethod_(message.remove);
+    const remove = this.getMethod_(message.remove);
     if (!remove) {
       return;
     }
 
-    if (!this.listeners_.has(port)) {
-      this.listeners_.set(port, []);
-    }
-
-    let listeners = this.listeners_.get(port);
-    listeners.push(() => remove(listener));
+    this.callOnDisconnect_(() => remove(listener));
   }
 
-  callMethod_(port, message) {
-    let id = message.id;
-    let method = this.getMethod_(message.type);
-    let callback = data => port.postMessage({data, id});
+  setButtonVisibility_(isVisible) {
+    if (isVisible) {
+      chrome.pageAction.show(this.tabId_);
+    } else {
+      chrome.pageAction.hide(this.tabId_);
+    }
+  }
+
+  callMethod_(message) {
+    const id = message.id;
+    const method = this.getMethod_(message.type);
+    const callback = data => this.port_.postMessage({data, id});
 
     if (!method) {
       callback();
       return;
     }
 
-    let args = message.data;
+    const args = message.data;
     try {
       if (message.isSync) {
         callback([method(...args)]);
@@ -63,7 +112,7 @@ class ContentProxy {
   }
 
   fetch(url, callback) {
-    let xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.onload = () => callback(xhr.response);
     xhr.open('GET', chrome.extension.getURL(url));
     xhr.send();
@@ -72,7 +121,7 @@ class ContentProxy {
   getDefinition(name, callback) {
     let api = this;
     let defs;
-    let path = name.split('.');
+    const path = name.split('.');
 
     try {
       while (path.length) {
@@ -89,18 +138,17 @@ class ContentProxy {
         defs = api;
       }
 
-      let items = Object.getOwnPropertyNames(defs)
-                      .map(name => {
-                        let data = {name};
-                        let item = api[name];
-                        data.type = this.getType_(item);
+      const items = Object.getOwnPropertyNames(defs).map(name => {
+        const data = {name};
+        const item = api[name];
+        data.type = this.getType_(item);
 
-                        if (data.type === Api.TYPE_OBJECT) {
-                          data.value = Object.assign({}, item);
-                        }
-                        return data;
-                      })
-                      .filter(entry => entry !== null);
+        if (data.type === Api.TYPE_OBJECT) {
+          data.value = Object.assign({}, item);
+        }
+        return data;
+      }).filter(entry => entry !== null);
+
       callback(items);
     } catch (e) {
       callback([]);
@@ -135,22 +183,55 @@ class ContentProxy {
     }
   }
 
-  onConnect_(port) {
-    port.onDisconnect.addListener(() => {
-      let listeners = this.listeners_.get(port) || [];
-      for (let listener of listeners) {
-        listener();
-      }
-      this.listeners_.delete(port);
-    });
-    port.onMessage.addListener(message => this.onMessage_(port, message));
+  onMessage_(message) {
+    const {id} = message;
+    if (String(id).startsWith('_')) {
+      this.addListener_(message);
+    } else {
+      this.callMethod_(message);
+    }
   }
 
-  onMessage_(port, message) {
-    if (String(message.id).startsWith('_')) {
-      this.addListener_(port, message);
-    } else {
-      this.callMethod_(port, message);
+  onTabUpdate_(tab) {
+    if (!tab || tab.id !== this.tabId_) {
+      return;
     }
+    const url = tab.url;
+    const isDetailsPage =
+        url && url.includes('chrome.google.com/webstore/detail/');
+    this.setButtonVisibility_(isDetailsPage);
+  }
+
+  onButtonClicked_(url) {
+    const id = this.installer_.getIdFromUrl(url);
+    if (!id) {
+      return;
+    }
+
+    this.installer_.isInstalled(id).then(isInstalled => {
+      this.setButtonVisibility_(false);
+      if (isInstalled) {
+        this.installer_.navigateToExtensionDetails(id);
+        return;
+      }
+
+      let onInstallRequest;
+      new Promise((resolve, reject) => {
+        onInstallRequest = extensionId => {
+          if (id === extensionId) {
+            resolve();
+          }
+        };
+        this.installer_.onInstallRequest.addListener(onInstallRequest);
+        chrome.tabs.sendMessage(
+            this.tabId_, this.constructor.ACTION_ADD_TO_OPERA);
+        setTimeout(reject, 3000);
+      }).then(() => {
+        this.installer_.onInstallRequest.removeListener(onInstallRequest);
+      }).catch(() => {
+        this.installer_.onInstallRequest.removeListener(onInstallRequest);
+        this.installer_.install({id});
+      });
+    });
   }
 }

@@ -23,7 +23,7 @@
   },
   "description": "__MSG_description__",
   "background": {
-    //"persistent": false,
+    "persistent": false,
     "scripts": [
       "/api/api.js",
       "/api/installer.js",

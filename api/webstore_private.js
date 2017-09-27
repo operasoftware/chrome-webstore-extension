@@ -1,7 +1,12 @@
 'use strict';
 
 class WebstorePrivate extends Api {
-  get Result() { return chrome.installer.Result; }
+  constructor(installer) {
+    super();
+    this.installer_ = installer;
+  }
+
+  get Result() { return this.installer_.Result; }
 
   get WebGlStatus() {
     return {
@@ -13,7 +18,7 @@ class WebstorePrivate extends Api {
   beginInstallWithManifest3({id, manifest}, callback) {
     manifest = JSON.parse(manifest);
 
-    chrome.installer.install(
+    this.installer_.install(
         {id, manifest},
         () => callback(''),
         () => callback(this.Result.USER_CANCELLED));

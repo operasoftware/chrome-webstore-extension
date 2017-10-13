@@ -167,7 +167,7 @@ class Installer extends Api {
                 clearInterval(interv);
                 this.onDownloadProgress.dispatch({id, percentDownloaded: 1});
                 onUnpacked();
-              } else if (download) {
+              } else if (download && download.error) {
                 clearInterval(interv);
                 alert(chrome.i18n.getMessage('installerErrorNetwork'));
                 onError();

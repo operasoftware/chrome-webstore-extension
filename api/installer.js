@@ -7,8 +7,6 @@ class Installer extends Api {
 
   static get MAX_DOWNLOADING_TIME() { return 45 * 1000; }
 
-  static get MAX_ATTEMPTS() { return 5; }
-
   constructor() {
     super();
     this.onDownloadProgress_ = Event.get();
@@ -155,45 +153,26 @@ class Installer extends Api {
     this.onDownloadProgress.dispatch({id, percentDownloaded: 0});
     this.onInstallStageChanged.dispatch(
         {id, stage: this.InstallStage.DOWNLOADING});
-    chrome.downloads.download(options);
-    return new Promise((onUnpacked, onError) => {
-
-      let attemptCounter = 0;
-
-      const attempt = () => {
-        if (attemptCounter >= this.constructor.MAX_ATTEMPTS) {
-          onError();
-          return;
-        }
-        attemptCounter = attemptCounter + 1;
-        setTimeout(() => {
-          Promise
-            .all([
-              this.getExtension_(id),
-              this.getDownload_(options.url),
-            ])
-            .then(details => {
-              const [extension, download] = details;
-              if (extension) {
-                this.onDownloadProgress.dispatch({id, percentDownloaded: 1});
-                onUnpacked();
-              } else if (download && download.error) {
-                alert(chrome.i18n.getMessage('installerErrorNetwork'));
-                onError();
-              } else if (Date.now() > maxTime) {
-                alert(chrome.i18n.getMessage('installerErrorTimeout'));
-                onError();
-              } else {
-                attempt();              
-              }
-            })
-            .catch(() => {
-              attempt();
-            });
-        }, 1000);
-      };
+    return new Promise((resolve, reject) => {
       
-      attempt();
+      chrome.downloads.download(options, (downloadId) => {
+        if (downloadId) {
+          this.onDownloadProgress.dispatch({id, percentDownloaded: 1});
+          resolve();
+        } else {
+          this.getDownload_(options.url).then((download) => {
+            if (download && download.error) {
+              alert(chrome.i18n.getMessage('installerErrorNetwork'));
+            } else if (Date.now() > maxTime) {
+              alert(chrome.i18n.getMessage('installerErrorTimeout'));
+            }
+            reject();            
+          }).catch(() => {
+            reject();
+          });
+        }
+      });
+      
     });
   }
 

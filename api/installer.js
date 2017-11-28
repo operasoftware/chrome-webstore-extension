@@ -7,6 +7,8 @@ class Installer extends Api {
 
   static get MAX_DOWNLOADING_TIME() { return 45 * 1000; }
 
+  static get MAX_ATTEMPTS() { return 5; }
+
   constructor() {
     super();
     this.onDownloadProgress_ = Event.get();
@@ -155,8 +157,17 @@ class Installer extends Api {
         {id, stage: this.InstallStage.DOWNLOADING});
     chrome.downloads.download(options);
     return new Promise((onUnpacked, onError) => {
-      let interv = setInterval(() => {
-        Promise
+
+      let attemptCounter = 0;
+
+      const attempt = () => {
+        if (attemptCounter >= this.constructor.MAX_ATTEMPTS) {
+          onError();
+          return;
+        }
+        attemptCounter = attemptCounter + 1;
+        setTimeout(() => {
+          Promise
             .all([
               this.getExtension_(id),
               this.getDownload_(options.url),
@@ -164,20 +175,25 @@ class Installer extends Api {
             .then(details => {
               const [extension, download] = details;
               if (extension) {
-                clearInterval(interv);
                 this.onDownloadProgress.dispatch({id, percentDownloaded: 1});
                 onUnpacked();
               } else if (download && download.error) {
-                clearInterval(interv);
                 alert(chrome.i18n.getMessage('installerErrorNetwork'));
                 onError();
               } else if (Date.now() > maxTime) {
-                clearInterval(interv);
                 alert(chrome.i18n.getMessage('installerErrorTimeout'));
                 onError();
+              } else {
+                attempt();              
               }
+            })
+            .catch(() => {
+              attempt();
             });
-      }, 1000);
+        }, 1000);
+      };
+      
+      attempt();
     });
   }
 

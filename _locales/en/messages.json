@@ -1,6 +1,6 @@
 {
   "name": {
-    "message": "Download Chrome Extension",
+    "message": "Install Chrome Extensions",
     "description": ""
   },
   
@@ -50,7 +50,7 @@
   },
 
   "welcomeYandex": {
-    "message": "Thank you for installing this extension but Yandex browser users don't need it. Your browser supports chrome web stroe by default. Just go there and try yourself.",
+    "message": "Thank you for installing this extension but Yandex browser users don't need it. Your browser supports chrome web store by default. Just go there and try yourself.",
     "description": ""
   }
 }

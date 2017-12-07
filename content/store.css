@@ -1,10 +1,16 @@
 div[role="button"],
 div[role="button"]:hover {
-  border-color: #a61414 !important;
-  background-color: #d12426 !important;
-  background-image: -webkit-linear-gradient(top,#f22222 0%,#bf0f0f 100%) !important;
+  border-color: #22a502 !important;
+  border-radius: 2px !important;
+  background-color: #26b700 !important;
+  background-image: -webkit-linear-gradient(top,#28bd00 0%,#21a100 100%) !important;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.15) !important;  
 }
 
 div[role="button"]:hover {
-  background-image: -webkit-linear-gradient(top,#ff3333 0%,#d63131 100%) !important;
+  background-image: -webkit-linear-gradient(top,#21a100 0%,#1e9200 100%) !important;
+}
+
+div[role="button"]:active {
+  box-shadow: none !important;
 }

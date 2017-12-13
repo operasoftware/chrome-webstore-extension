@@ -35,10 +35,14 @@
       "/background/app.js"
     ]
   },
-  "version": "2.5.0",
+  "version": "2.5.1",
   "manifest_version": 2,
   "page_action": {
-    "default_icon": "icons/19.png",
+    "default_icon": {
+      "16": "icons/16.png",
+      "24": "icons/24.png",
+      "32": "icons/32.png"
+    },
     "default_title": "__MSG_buttonTitle__"
   },
   "permissions": [

@@ -1,0 +1,56 @@
+{
+  "name": {
+    "message": "Instalar Extensões Chrome",
+    "description": ""
+  },
+  
+  "description": {
+    "message": "Instalar extensões da Loja Online Chrome.",
+    "description": ""
+  },
+
+  "buttonTitle": {
+    "message": "Adicionar ao Browser Opera",
+    "description": ""
+  },
+
+  "installerErrorNetwork": {
+    "message": "Não foi possível fazer a transferência da extensão devido a um erro de rede.\n\nVerifique a sua ligacão à Internet e tente outra vez.",
+    "description": ""
+  },
+
+  "installerErrorTimeout": {
+    "message": "O tempo de transferência expirou. A causa mais comum é uma ligação lenta ou instável à Internet.\n\nVolte a tentar mais tarde.",
+    "description": ""
+  },
+
+  "installerFinalize": {
+    "message": "Para completar a instalação, dirija-se ao gestor de instalações e confirme clicando no botão de instalação.",
+    "description": ""
+  },
+
+  "installerFinalizeMayWork": {
+    "message": "Para completar a instalação, dirija-se ao gestor de instalações e confirme clicando no botão de instalação.\n\n[Nota de compatibilidade]\nAtenção que esta extensão requer APIs que não são totalmente suportadas pelo browser Opera.\nAinda assim, pode funcionar no browser Opera. Por favor, complete a instalação para confirmar.",
+    "description": ""
+  },
+
+  "installerFinalizeNotSupported": {
+    "message": "Para completar a instalação, dirija-se ao gestor de instalações e confirme clicando no botão de instalação.\n\n[Nota de Compatibilidade]\nAtenção que esta extensão requer APIs que não são suportadas pelo browser Opera.\nAinda assim, pode funcionar no browser Opera. Por favor, complete a instalação para confirmar.",
+    "description": ""
+  },
+
+  "installerNotSupportedApp": {
+    "message": "Está a tentar instalar uma APP.\n\nO browser Opera não suporta apps. Apenas extensões podem ser instaladas.",
+    "description": ""
+  },
+
+  "installerNotSupportedTheme": {
+    "message": "Está a tentar instalar um THEME.\n\nO browser Opera não suporta themes no formato chromium. Apenas extensões podem ser instaladas.",
+    "description": ""
+  },
+
+  "welcomeYandex": {
+    "message": "Obrigado por instalar esta extensão mas utilizadores do browser Yandex não a necessitam. O browser Yandex já suporta a Chrome Web Store the maneira nativa.",
+    "description": ""
+  }
+}

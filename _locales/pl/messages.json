@@ -1,0 +1,46 @@
+{
+  "buttonTitle": {
+    "description": "",
+    "message": "Dodaj do Opery"
+  },
+  "description": {
+    "description": "",
+    "message": "Zainstaluj rozszerzenia ze sklepu Chrome Web Store."
+  },
+  "installerErrorNetwork": {
+    "description": "",
+    "message": "Nie można pobrać pakietu rozszerzenia z powodu błędu sieci. Sprawdź połączenie internetowe i spróbuj ponownie."
+  },
+  "installerErrorTimeout": {
+    "description": "",
+    "message": "Przekroczono czas oczekiwania. Jest to najczęściej spowodowane powolnym lub niestabilnym połączeniem sieciowym. Poczekaj jeszcze chwilę lub spróbuj jeszcze raz."
+  },
+  "installerFinalize": {
+    "description": "",
+    "message": "Aby zakończyć instalację przejdź do managera rozszerzeń i potwierdź instalację klikając na guzik \"Zainstaluj\"."
+  },
+  "installerFinalizeMayWork": {
+    "description": "",
+    "message": "Aby zakończyć instalację przejdź do managera rozszerzeń i potwierdź instalację klikając na guzik \"Zainstaluj\". [Informacja o zgodności] To rozszerzenie wymaga API, które nie są w pełni wspierane w Operze. Mimo to rozszerzenie może działać w Operze, więc zakończ instalację aby to sprawdzić."
+  },
+  "installerFinalizeNotSupported": {
+    "description": "",
+    "message": "Aby zakończyć instalację przejdź do managera rozszerzeń i potwierdź instalację klikając na guzik \"Zainstaluj\". [Informacja o zgodności] To rozszerzenie wymaga API, które nie są w wspierane w Operze. Mimo to rozszerzenie może działać w Operze, więc zakończ instalację aby to sprawdzić."
+  },
+  "installerNotSupportedApp": {
+    "description": "",
+    "message": "Próbujesz zainstalować aplikację. Opera nie wspiera aplikacji, jedynie rozszerzenia mogą być zainstalowane."
+  },
+  "installerNotSupportedTheme": {
+    "description": "",
+    "message": "Próbujesz zainstalować motyw. Opera nie wspiera motywów, jedynie rozszerzenia mogą być zainstalowane."
+  },
+  "name": {
+    "description": "",
+    "message": "Zainstaluj rozszerzenia Chome"
+  },
+  "welcomeYandex": {
+    "description": "",
+    "message": "Dziękujemy za zainstalowanie tego rozszerzenia ale użytkownicy przeglądarki Yandex nie potrzebują go. Twoja przeglądarka domyślnie wspiera sklep Chrome Web Store. Po prostu zajrzyj tam i przekonaj się sam."
+  }
+}

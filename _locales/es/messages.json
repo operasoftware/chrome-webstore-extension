@@ -1,0 +1,56 @@
+{
+  "name": {
+    "message": "Instalar Extensiones de Chrome",
+    "description": ""
+  },
+  
+  "description": {
+    "message": "Instalar extensiones de Chrome Web Store.",
+    "description": ""
+  },
+
+  "buttonTitle": {
+    "message": "Añadir a Opera",
+    "description": ""
+  },
+
+  "installerErrorNetwork": {
+    "message": "No se puede descargar la extension por un fallo en la red.\n\nComprueba tu conexión e inténtalo de nuevo.",
+    "description": ""
+  },
+
+  "installerErrorTimeout": {
+    "message": "Se ha agotado el tiempo de espera. Puede ser debido a una conexión a Internet lenta o inestable.\n\nEspera un poco o inténtalo de nuevo.",
+    "description": ""
+  },
+
+  "installerFinalize": {
+    "message": "Para finalizar la instalación, abre el Gestor de Extensiones y haz click en el botón de \"Instalar\" para confirmar.",
+    "description": ""
+  },
+
+  "installerFinalizeMayWork": {
+    "message": "Para finalizar la instalación, abre el Gestor de Extensiones y haz click en el botón de \"Instalar\" para confirmar.\n\n[Nota de compatibilidad]\nPor favor, ten en cuenta que esta extensión requiere APIs que no están completamente soportados en Opera.\nSin embargo, es posible que funcione. Completa la instalación para comprobarlo.",
+    "description": ""
+  },
+
+  "installerFinalizeNotSupported": {
+    "message": "Para finalizar la instalación, abre el Gestor de Extensiones y haz click en el botón de \"Instalar\" para confirmar.\n\n[Nota de compatibilidad]\nPor favor, ten en cuenta que esta extensión requiere APIs que no son soportados en Opera.\nSin embargo, es posible que funcione. Completa la instalación para comprobarlo.",
+    "description": ""
+  },
+
+  "installerNotSupportedApp": {
+    "message": "Intentas instalar una APLICACIÓN.\n\nOpera no es compatible con aplicaciones. Solo se puede instalar EXTENSIONES.",
+    "description": ""
+  },
+
+  "installerNotSupportedTheme": {
+    "message": "Intentas instalar un TEMA.\n\nOpera no es compatible con formato de temas de Chromium. Solo se puede instalar EXTENSIONES.",
+    "description": ""
+  },
+
+  "welcomeYandex": {
+    "message": "Gracias por instalar esta extensión, pero usuarios de Yandex browser no lo necesitan. Tu navegador soporta Chrome Web Store por defecto. Abrelo para ver por ti mismo.",
+    "description": ""
+  }
+}

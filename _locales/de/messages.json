@@ -1,0 +1,56 @@
+{
+  "name": {
+    "message": "Install Chrome Extensions",
+    "description": ""
+  },
+  
+  "description": {
+    "message": "Installiere Extensions vom Chrome Web Store.",
+    "description": ""
+  },
+
+  "buttonTitle": {
+    "message": "Zu Opera hinzufügen",
+    "description": ""
+  },
+
+  "installerErrorNetwork": {
+    "message": "Die Extension konnte aufgrund eines Netzwerkfehlers nicht heruntergeladen werden.\n\n Überprüfe deine Internetverbindung und versuche es erneut.",
+    "description": ""
+  },
+
+  "installerErrorTimeout": {
+    "message": "Download-Timeout erreicht. Meistens wird es durch langsame oder instabile Internetverbindung verursacht.\n\n Warte einen Moment oder versuche es noch einmal.",
+    "description": ""
+  },
+
+  "installerFinalize": {
+    "message": "Um die Installation abzuschließen, geh zum Erweiterungsmanager und bestätige die Installation, indem du auf die Schaltfläche Installieren klickst.",
+    "description": ""
+  },
+
+  "installerFinalizeMayWork": {
+    "message": "Um die Installation abzuschließen, geh zum Erweiterungsmanager und bestätige die Installation, indem du auf die Schaltfläche Installieren klickst.\n\n[Kompatibilitätsanzeige]\nBitte beachte, dass diese Erweiterung APIs erfordert, die in Opera nicht vollständig unterstützt werden.\nEs kann immerhin in Opera funktionieren. Beende die Installation um es zu überprüfen.",
+    "description": ""
+  },
+
+  "installerFinalizeNotSupported": {
+    "message": "Um die Installation abzuschließen, geh zum Erweiterungsmanager und bestätige die Installation, indem du auf die Schaltfläche Installieren klickst.\n\n[Kompatibilitätsanzeige]\nBitte beachte, dass diese Erweiterung APIs erfordert, die in Opera nicht vollständig unterstützt werden.\nEs kann immerhin in Opera funktionieren. Beende die Installation um es zu überprüfen.",
+    "description": ""
+  },
+
+  "installerNotSupportedApp": {
+    "message": "Du versuchst, eine APP zu installieren.\n\nOpera unterstützt keine Apps. Es können nur EXTENSIONS installiert werden.",
+    "description": ""
+  },
+
+  "installerNotSupportedTheme": {
+    "message": "Du versuchst, eine THEME zu installieren.\n\nOpera unterstützt den Chromium Theme Format nicht. Es können nur EXTENSIONS installiert werden.",
+    "description": ""
+  },
+
+  "welcomeYandex": {
+    "message": "Vielen Dank für die Installation dieser Erweiterung, aber Yandex Benutzer brauchen es nicht. Dein Browser unterstützt Chrome Web Store standardmäßig. Probier es selbst aus.",
+    "description": ""
+  }
+}

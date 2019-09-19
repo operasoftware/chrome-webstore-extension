@@ -35,7 +35,7 @@
       "/background/app.js"
     ]
   },
-  "version": "2.5.7",
+  "version": "2.5.8",
   "manifest_version": 2,
   "page_action": {
     "default_icon": {

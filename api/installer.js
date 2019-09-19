@@ -106,6 +106,7 @@ class Installer extends Api {
     params.append('prod', 'chromiumcrx');
     params.append('prodchannel', 'unknown');
     params.append('prodversion', this.browserVersion_);
+    params.append('acceptformat', 'crx2,crx3');
     params.append('x', `id=${id}&uc`);
 
     return {

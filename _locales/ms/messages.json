@@ -1,0 +1,56 @@
+{
+  "name": {
+    "message": "Pasang Sambungan Chrome",
+    "description": ""
+  },
+  
+  "description": {
+    "message": "Pasang sambungan dari Kedai Web Chrome.",
+    "description": ""
+  },
+
+  "buttonTitle": {
+    "message": "Tambah pada Opera",
+    "description": ""
+  },
+
+  "installerErrorNetwork": {
+    "message": "Tidak mampu memuat turun pakej sambungan kerana ralat rangkaian.\n\nPeriksa sambungan internet anda dan cuba semula.",
+    "description": ""
+  },
+
+  "installerErrorTimeout": {
+    "message": "Had masa muat turun dicapai. Ia selalunya terjadi akibat sambungan internet yang lambat atau tidak stabil.\n\nTunggu sebentar atau cuba lagi sekali.",
+    "description": ""
+  },
+
+  "installerFinalize": {
+    "message": "Untuk melengkapkan pemasangan, pergi ke pengurus sambungan dan sahkan pemasangan dengan menekan butang pasang.",
+    "description": ""
+  },
+
+  "installerFinalizeMayWork": {
+    "message": "Untuk melengkapkan pemasangan, pergi ke pengurus sambungan dan sahkan pemasangan dengan menekan butang pasang.\n\n[Notis keserasian]\nSila ambil maklum, sambungan ini memerlukan API sambungan yang tidak disokong secara penuh di Opera.\nIa mungkin masih boleh digunakan di Opera, jadi lengkapkan pemasangan untuk mengesah betul.",
+    "description": ""
+  },
+
+  "installerFinalizeNotSupported": {
+    "message": "Untuk melengkapkan pemasangan, pergi ke pengurus sambungan dan sahkan pemasangan dengan menekan butang pasang.\n\n[Notis keserasian]\nSila ambil maklum, sambungan ini memerlukan API sambungan yang langsung tidak disokong di Opera.\nIa mungkin masih boleh digunakan di Opera, jadi lengkapkan pemasangan untuk mengesah betul.",
+    "description": ""
+  },
+
+  "installerNotSupportedApp": {
+    "message": "Anda sedang cuba memasang APL.\n\nOpera tidak menyokong apl. Hanya SAMBUNGAN sahaja boleh dipasang.",
+    "description": ""
+  },
+
+  "installerNotSupportedTheme": {
+    "message": "Anda sedang cuba memasang TEMA.\n\nOpera tidak menyokong format tema chromium. Hanya SAMBUNGAN sahaja boleh dipasang.",
+    "description": ""
+  },
+
+  "welcomeYandex": {
+    "message": "Terima kasih kerana memasang sambungan ini tetapi pengguna pelayar Yandex tidak memerlukan sambungan ini. Pelayar anda menyokong kedai web chrome secara lalainya. Pergi terus ke sana dan cuba pasang terus dengan sendiri.",
+    "description": ""
+  }
+}
